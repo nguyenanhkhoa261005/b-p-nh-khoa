@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bếp Nhà Khoa</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="image-container"></div>
+
+    <div class="header">
+      <div class="header-content">
+        <div class="logo">
+          <img src="logo.png" alt="Bếp Nhà Khoa Logo" />
+          <h1>Bếp Nhà Khoa</h1>
+        </div>
+        <div class="nav-links">
+          <a href="#" onclick="alert('Chuyển đến trang Home!')">Home</a>
+          <a href="#" onclick="alert('Chuyển đến trang About!')">About</a>
+          <a href="#" onclick="alert('Chuyển đến trang Menu!')">Menu</a>
+          <a href="#" onclick="alert('Chuyển đến trang Gallery!')">Gallery</a>
+          <a href="#" onclick="alert('Chuyển đến trang Review!')">Review</a>
+          <a href="#" onclick="alert('Chuyển đến trang Order!')">Order</a>
+        </div>
+        <div class="nav-icons">
+          <a href="#" onclick="alert('Tính năng tìm kiếm đang phát triển!')"
+            >🔍</a
+          >
+          <a href="#" onclick="alert('Tính năng yêu thích đang phát triển!')"
+            >❤️</a
+          >
+          <a onclick="openModal('cart-modal')" class="cart-icon">
+            🛒
+            <span id="cart-count">0</span>
+          </a>
+          <a onclick="openModal('login-modal')">👤</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+      <div class="hero-text">
+        <h2>Thưởng thức món ăn <span>tươi ngon</span> tại Bếp Nhà Khoa</h2>
+        <p>
+          Chào mừng bạn đến với Bếp Nhà Khoa! Chúng tôi mang đến những món ăn
+          tươi ngon, được chế biến với tất cả sự tận tâm. Hãy khám phá thực đơn
+          và đặt hàng ngay hôm nay! bạn có thể liên hệ tôi qua số điện thoại
+          0704125218
+        </p>
+      </div>
+      <div class="hero-image">
+        <img src="main_img.png" alt="Burger" />
+      </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('login-modal')">×</span>
+        <h2 id="modal-title">Đăng nhập</h2>
+
+        <!-- Form Đăng nhập/Đăng ký -->
+        <div id="auth-form">
+          <input
+            type="text"
+            id="username"
+            placeholder="Tên đăng nhập"
+            required
+          />
+          <input
+            type="password"
+            id="password"
+            placeholder="Mật khẩu"
+            required
+          />
+          <input
+            type="email"
+            id="email"
+            placeholder="Email (dành cho đăng ký)"
+            style="display: none"
+            required
+          />
+          <button id="auth-btn" onclick="handleAuth()">Đăng nhập</button>
+        </div>
+
+        <!-- Chuyển đổi Đăng nhập/Đăng ký -->
+        <p id="toggle-auth" style="text-align: center; margin: 10px 0">
+          Chưa có tài khoản? <a href="#" onclick="toggleAuthMode()">Đăng ký</a>
+        </p>
+
+        <!-- Đăng nhập bằng Google/Facebook -->
+        <div style="text-align: center; margin-top: 20px">
+          <p>Hoặc đăng nhập bằng:</p>
+          <button
+            style="background: #db4437; margin: 5px"
+            onclick="loginWithGoogle()"
+          >
+            Google
+          </button>
+          <button
+            style="background: #3b5998; margin: 5px"
+            onclick="loginWithFacebook()"
+          >
+            Facebook
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('cart-modal')">×</span>
+        <h2>Giỏ hàng của bạn</h2>
+        <div id="cart-items"></div>
+        <div class="cart-total" id="cart-total">Tổng tiền: 0 VNĐ</div>
+        <button onclick="alert('Chuyển đến trang thanh toán!')">
+          Thanh toán
+        </button>
+      </div>
+    </div>
+
+    <div class="featured">
+      <div class="item">
+        <img src="burger.jpg" alt="Burger" />
+        <h3>Burger King</h3>
+        <p>50.000 VNĐ</p>
+        <button onclick="addToCart('Burger King', 50000)">Thêm vào giỏ</button>
+      </div>
+      <div class="item">
+        <img src="pizza.jpg" alt="Pizza" />
+        <h3>Pizza Hải Sản</h3>
+        <p>120.000 VNĐ</p>
+        <button onclick="addToCart('Pizza Hải Sản', 120000)">
+          Thêm vào giỏ
+        </button>
+      </div>
+      <div class="item">
+        <img src="Chicken.jpg" alt="Gà Rán" />
+        <h3>Gà Rán KFC</h3>
+        <p>80.000 VNĐ</p>
+        <button onclick="addToCart('Gà Rán KFC', 80000)">Thêm vào giỏ</button>
+      </div>
+      <div class="item">
+        <img src="xucxich.jpg" alt="Xúc Xích" />
+        <h3>Xúc Xích Đức</h3>
+        <p>40.000 VNĐ</p>
+        <button onclick="addToCart('Xúc Xích Đức', 40000)">Thêm vào giỏ</button>
+      </div>
+      <div class="item">
+        <img src="ca-phe-sua-da-.jpg" alt="Cà Phê" />
+        <h3>Cà Phê Sữa</h3>
+        <p>30.000 VNĐ</p>
+        <button onclick="addToCart('Cà Phê Sữa', 30000)">Thêm vào giỏ</button>
+      </div>
+      <div class="item">
+        <img src="pasta.jpg" alt="Pasta" />
+        <h3>Pasta Hải Sản</h3>
+        <p>90.000 VNĐ</p>
+        <button onclick="addToCart('Pasta Hải Sản', 90000)">
+          Thêm vào giỏ
+        </button>
+      </div>
+      <div class="item">
+        <img src="cach-lam-mi-y.jpg" alt="Mì Ý" />
+        <h3>Mì Ý Bò Bằm</h3>
+        <p>85.000 VNĐ</p>
+        <button onclick="addToCart('Mì Ý Bò Bằm', 85000)">Thêm vào giỏ</button>
+      </div>
+      <div class="item">
+        <img src="th.jpg" alt="Trà Sữa" />
+        <h3>Trà Sữa Trân Châu</h3>
+        <p>35.000 VNĐ</p>
+        <button onclick="addToCart('Trà Sữa Trân Châu', 35000)">
+          Thêm vào giỏ
+        </button>
+      </div>
+      <div class="item">
+        <img src="goicuon.jpg" alt="Gỏi Cuốn" />
+        <h3>Gỏi Cuốn Tôm Thịt</h3>
+        <p>45.000 VNĐ</p>
+        <button onclick="addToCart('Gỏi Cuốn Tôm Thịt', 45000)">
+          Thêm vào giỏ
+        </button>
+      </div>
+    </div>
+    <div class="promo">
+      <h2>Khuyến mãi đặc biệt</h2>
+      <p>Mua 1 tặng 1 - Chỉ hôm nay!</p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
